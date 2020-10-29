@@ -4,6 +4,21 @@ import scala.collection.mutable.ArrayBuffer
 /*Определите, является ли целое число палиндромом.*/
 
 object Task2 extends App {
+  def func_solution(x: Int):Boolean = {
+    @tailrec
+    def digitunpack(x: Int, digitList: List[Int] = Nil ):List[Int] = {
+      x / 10 match {
+        case 0  => x :: digitList
+        case _ => digitunpack(x / 10, x % 10 :: digitList)
+      }
+    }
+    val nx = digitunpack(x).zip(digitunpack(x).reverse).filterNot(x => x._1 == x._2).length match {
+      case 0 => true
+      case _ => false
+    }
+    nx
+  }
+/*
   def solution(x: Int) = {
     var digits = ArrayBuffer[Int]()
     var nx = x
@@ -24,14 +39,23 @@ object Task2 extends App {
     if (polindromic(digits) <= 1) true
     else false
   }
+*/
 
-
-println(s"Task 2 = ${Task2.solution(121)}")
+println(s"Task 2 = ${Task2.func_solution(121)}")
   //true
-println(s"Task 2 = ${Task2.solution(-121)}")
+println(s"Task 2 = ${Task2.func_solution(-121)}")
   // по ТЗ false, у меня true т.к. по логике палиндром это палиндром независимо от знака
-println(s"Task 2 = ${Task2.solution(10)}")
+println(s"Task 2 = ${Task2.func_solution(10)}")
   // false
-
+  println(s"Task 2 = ${Task2.func_solution(1410141)}")
+  // true
+  println(s"Task 2 = ${Task2.func_solution(54)}")
+  // false
+  println(s"Task 2 = ${Task2.func_solution(5671)}")
+  // false
+  println(s"Task 2 = ${Task2.func_solution(110011)}")
+  // true
+  println(s"Task 2 = ${Task2.func_solution(12011)}")
+  // false
   /*идея оптимизации алгоритма - использовать Vector вместо ArrayBuffer*/
 }
