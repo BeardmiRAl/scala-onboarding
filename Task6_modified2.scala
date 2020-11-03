@@ -30,7 +30,7 @@ object Task6_modified2 extends App {
     }
 
   def solution(l1: ListNode, l2: ListNode) = {
-  hasnext(l1,l2,0)
+    hasnext(l1,l2,0)
     l1
   }
 

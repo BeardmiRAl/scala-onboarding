@@ -16,9 +16,10 @@ object Task7 extends App {
     val StartNode = 0
     val FinishNode = nums.length - 1
     val n = nums.zipWithIndex
-    val graphmap = (for (node <- n if (node._1 != 0 && node._2 != n.length - 1); i <- 1 to node._1) yield Node(node._2, node._2 + i)).toList
+    val graphmap = (for (node <- n if (node._1 != 0 && node._2 != n.last._2); i <- 1 to node._1) yield Node(node._2, node._2 + i)).toList
     val startNodes = graphmap.filter(_.source == StartNode)
-    val finishNodes = graphmap.filter(_.dest == FinishNode)
+    println(graphmap)
+
 
 
   def findPaths(allNodes: List[Node], newNode: Node, path: List[Node] = Nil, isVisited: List[Int] = Nil, allPaths: List[List[Node]] = Nil): List[List[Node]] = {
@@ -39,10 +40,7 @@ object Task7 extends App {
   }
 
   val pathstoend = startNodes.flatMap(node => findPaths(graphmap, node)).flatten.filter(_.dest == FinishNode)
-  if (pathstoend.length > 0) true
-    else false
-
-
+  pathstoend.nonEmpty
 
 }
 

@@ -12,13 +12,11 @@ object Task2 extends App {
         case _ => digitunpack(x / 10, x % 10 :: digitList)
       }
     }
-    val nx = digitunpack(x).zip(digitunpack(x).reverse).filterNot(x => x._1 == x._2).length match {
-      case 0 => true
-      case _ => false
-    }
-    nx
+    digitunpack(x).zip(digitunpack(x).reverse).forall(x => x._1 == x._2)
   }
-/*
+
+
+  /*
   def solution(x: Int) = {
     var digits = ArrayBuffer[Int]()
     var nx = x
@@ -57,5 +55,5 @@ println(s"Task 2 = ${Task2.func_solution(10)}")
   // true
   println(s"Task 2 = ${Task2.func_solution(12011)}")
   // false
-  /*идея оптимизации алгоритма - использовать Vector вместо ArrayBuffer*/
+
 }

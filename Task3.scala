@@ -4,11 +4,7 @@
 
 object Task3 extends App {
   def solution(s: String) = {
-    val p = s.split(" ").lastOption.toList
-    p.length match {
-      case 0 => 0
-      case _ => p.head.length
-    }
+s.split(" ").lastOption.map(_.length).getOrElse(0)
     }
 
 
